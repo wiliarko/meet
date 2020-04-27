@@ -1,2 +1,3 @@
 rootProject.name='meet'
 include ':app'
+include ':litemeet'
