@@ -1,3 +1,4 @@
 rootProject.name='meet'
 include ':app'
 include ':litemeet'
+project(':litemeet').projectDir = new File(settingsDir, '/litemeet')

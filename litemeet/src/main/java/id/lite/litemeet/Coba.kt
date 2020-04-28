@@ -12,18 +12,10 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
 
-class coba : AppCompatActivity() {
-    fun berhasil(): String {
-        return "berhasil"
-    }
-
+class Coba : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        btn.setOnClickListener {
-//            var a = coba()
-//            println(a.berhasil())
-//        }
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.RECORD_AUDIO)
             != PackageManager.PERMISSION_GRANTED) {
@@ -35,17 +27,6 @@ class coba : AppCompatActivity() {
         }else{
             permisioncamera()
         }
-//        if (ContextCompat.checkSelfPermission(this,
-//                Manifest.permission.MICROPHONE)
-//            != PackageManager.PERMISSION_GRANTED) {
-//
-//            ActivityCompat.requestPermissions(this,
-//                arrayOf(Manifest.permission.RECORD_AUDIO),
-//                996)
-//
-//        }else{
-//            permisioncamera()
-//        }
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.MODIFY_AUDIO_SETTINGS)
             != PackageManager.PERMISSION_GRANTED) {
@@ -57,7 +38,6 @@ class coba : AppCompatActivity() {
         }else{
             permisioncamera()
         }
-//        permisioncamera()
 
     }
 
@@ -110,8 +90,9 @@ class coba : AppCompatActivity() {
 //        val customTabsIntent = builder.build()
 //
 //        customTabsIntent.launchUrl(this, Uri.parse(url))
-
-        webview.loadUrl("http://192.168.43.5/meet/public/room/cekjoin/2zGqL7ySAU9J1FnF/a")
+        val d = intent.getStringExtra("id")
+        val name = intent.getStringExtra("name")
+        webview.loadUrl("http://192.168.43.5/meet/public/room/cekjoin/"+d+"/"+name)
 //        webview.loadUrl("https://www.youtube.com/watch?v=C9_59BIo5XU")
         val settings = webview.settings
         settings.setUserAgentString("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.97 Safari/537.36");
@@ -207,7 +188,7 @@ class coba : AppCompatActivity() {
         // Set web view chrome client
         webview.webChromeClient = object: WebChromeClient(){
             override fun onProgressChanged(view: WebView, newProgress: Int) {
-                progress_bar.progress = newProgress
+//                progress_bar.progress = newProgress
             }
             override fun onPermissionRequest(request: PermissionRequest) {
                 request.grant(request.resources)
